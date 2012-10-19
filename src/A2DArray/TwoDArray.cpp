@@ -25,6 +25,8 @@ TwoDArray<T>::TwoDArray(int r = 10, int c = 10, T def = T()){
 template <typename T>
 TwoDArray<T>::~TwoDArray<T>(){
  //TODO Destructor
+ for(int i=0; i<numRows; i++)
+ delete[] theArray[i];
 }
 
 template <typename T>
@@ -39,19 +41,29 @@ void TwoDArray<T>::remove(int r, int c){
 
 template <typename T>
 void TwoDArray<T>::print(){
- std::cout << "{ ";
  for(int i=0; i<numRows; i++){  //number of rows (height) each iteration is a new vertical position
+
+  if(i==0)
+   std::cout << "{ ";
+  else
+   std::cout << "  ";
+
   std::cout << "[ ";
   for(int j=0; j<numCols; j++){ //number of columns (width) each iteration is a new horizontal position
    std::cout << theArray[i][j];
-   if(j!=numCols)
+   if(j<numCols-1)
     std::cout << " , ";
   }
   std::cout << " ]";
-  if(i!=numRows)
-   std::cout << "," << std::endl;
+  
+  if(i==numRows-1)
+   std::cout << " }";
+  else
+   std::cout << ",";
+
+  std::cout << std::endl;
  }
- std::cout << " }" << std::endl;
+
 }
 
 template <typename T>
