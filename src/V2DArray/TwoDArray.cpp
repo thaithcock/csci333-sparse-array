@@ -1,5 +1,4 @@
 #include "TwoDArray.h"
-#include <iostream>
 #include "assert.h"
 
 template <typename T>
@@ -9,10 +8,7 @@ TwoDArray<T>::TwoDArray(int r = 10, int c = 10, T def = T()){
  defaultValue = def;
  numCols = c;
  numRows = r;
- theArray = vector < vector <T> >(r);
- for(int i = 0; i<r; i++){
-  theArray.pushBack(vector<T>(c)); 
- }
+ theArray = std::vector < std::vector <T> >(r, std::vector<T>(c, def));
 
  //populate with default value
  for(int j = 0; j<r; j++){

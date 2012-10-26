@@ -10,8 +10,19 @@ GTEST_INCLUDES = -I$(GTEST) -I$(GTEST)/include
 CPP = g++
 CPPFLAGS = -Wall -Wextra
 
-A2DArray_test: A2DArray_test.cpp $(SRC)/A2DArray/TwoDArray.o $(GTEST_MAINA)
+TwoDArray_test:
+	make A2DArray_test
+	make V2DArray_test
+
+A2DArray_test: TwoDArray_test.cpp $(SRC)/A2DArray/TwoDArray.o $(GTEST_MAINA)
+	cp $(SRC)/A2DArray/TwoDArray.h .
 	$(CPP) $(CFLAGS) $(GTEST_INCLUDES) -pthread -o $@ $^ $(GTEST_MAINA)
+	rm ./TwoDArray.h
+
+V2DArray_test: TwoDArray_test.cpp
+	cp $(SRC)/V2DArray/TwoDArray.h .
+	$(CPP) $(CFLAGS) $(GTEST_INCLUDES) -pthread -o $@ $^ $(GTEST_MAINA)
+	rm ./TwoDArray.h
 
 $(GTEST_MAINA): $(GTEST)/src/*.cc $(GTEST)/src/*.h
 	cd $(GTEST)/make; make

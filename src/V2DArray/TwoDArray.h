@@ -1,11 +1,12 @@
 #ifndef __TWODARRAY_H__
 #define __TWODARRAY_H__
 #include <vector>
+#include <iostream>
 
 template <typename T>
 class TwoDArray {
  private:
-  vector < vector <T> > theArray;
+  std::vector< std::vector<T> > theArray;
   T defaultValue;
   int numRows;
   int numCols;
