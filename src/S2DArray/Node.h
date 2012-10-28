@@ -11,8 +11,10 @@ class Node {
   Node<T>(T v);
   ~Node<T>();
   T getValue();
-  void setVPoint(Node* n);
-  void setHPoint(Node* n);
+  void setNextV(Node* n);
+  void setNextH(Node* n);
   Node* getNextV();
   Node* getNextH();
 };
+
+#endif
