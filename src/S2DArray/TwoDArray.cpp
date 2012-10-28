@@ -19,7 +19,7 @@ TwoDArray<T>::~TwoDArray<T>(){
 
 template <typename T>
 T TwoDArray<T>::access(int r, int c){
- return theArray[r][c];
+ return T();
 }
 
 template <typename T>

@@ -35,6 +35,11 @@ T TwoDArray<T>::access(int r, int c){
 }
 
 template <typename T>
+void TwoDArray<T>::insert(int r, int c, T value) {
+ theArray[r][c] = value;
+}
+
+template <typename T>
 void TwoDArray<T>::remove(int r, int c){
  theArray[r][c] = defaultValue;
 }
