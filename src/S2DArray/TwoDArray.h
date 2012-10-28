@@ -15,6 +15,7 @@ class TwoDArray {
   TwoDArray<T>(int r, int c, T def);
   ~TwoDArray<T>();
   T access(int r, int c);
+  void insert(int r, int c, T value);
   void remove(int r, int c);
   void print();
   int getNumRows();
