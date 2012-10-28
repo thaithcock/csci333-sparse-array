@@ -79,4 +79,4 @@ int TwoDArray<T>::getNumCols(){
 template class TwoDArray<int>;
 template class TwoDArray<std::string>;
 template class TwoDArray<double>;
-
+template class TwoDArray<bool>;
