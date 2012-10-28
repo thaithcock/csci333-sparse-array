@@ -19,9 +19,9 @@ TEST(TwoDArray, inits){
 TEST(TwoDArray, insert){
  TwoDArray<std::string>* array = new TwoDArray<std::string>(3,7,"0");
  array->insert(0,0,"one");
- EXPECT_TRUE(array->getValue(0,0).compare("one"));
+ EXPECT_TRUE(array->access(0,0).compare("one"));
  array->insert(3,5,"two");
- EXPECT_TRUE(array->getValue(3,5).compare("two"));
+ EXPECT_TRUE(array->access(3,5).compare("two"));
  delete array
 }
 
@@ -34,8 +34,8 @@ TEST(TwoDArray, remove){
  } //inserting values into all points
  array->remove(2,3);
  array->remove(6,4);
- EXPECT_EQ(array->getValue(2,3), 0.0);
- EXPECT_EQ(array->getValue(6,4), 0.0);
+ EXPECT_EQ(array->access(2,3), 0.0);
+ EXPECT_EQ(array->access(6,4), 0.0);
 }
 
 TEST(TwoDArray, getNumCols){
