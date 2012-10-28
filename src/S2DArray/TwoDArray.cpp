@@ -19,12 +19,18 @@ TwoDArray<T>::~TwoDArray<T>(){
 
 template <typename T>
 T TwoDArray<T>::access(int r, int c){
+ //TODO access function
  return T();
 }
 
 template <typename T>
+void TwoDArray<T>::insert(int r, int c, T value) {
+ //TODO insert function
+}
+
+template <typename T>
 void TwoDArray<T>::remove(int r, int c){
- theArray[r][c] = defaultValue;
+ //TODO remove function
 }
 
 template <typename T>
@@ -38,7 +44,7 @@ void TwoDArray<T>::print(){
 
   std::cout << "[ ";
   for(int j=0; j<numCols; j++){ //number of columns (width) each iteration is a new horizontal position
-   std::cout << theArray[i][j];
+   std::cout << access(i,j); // Replaced direct array access with public method because easier than rewriting
    if(j<numCols-1)
     std::cout << " , ";
   }
