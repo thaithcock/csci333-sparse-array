@@ -8,29 +8,81 @@ TwoDArray<T>::TwoDArray(int r = 10, int c = 10, T def = T()){
  defaultValue = def;
  numCols = c;
  numRows = r;
- theRows = Node*[](r);
- theCols = Node*[](c);
+ theRows = Node<T>*[](r);
+ theCols = Node<T>*[](c);
 }
 
 template <typename T>
 TwoDArray<T>::~TwoDArray<T>(){
- //TODO destructor
+ Node<T>* curr;
+ Node<T>* next;
+ for(int i = 0; i<r; i++){
+  recurDelete(theRows[i]);
+ }
+ delete[] theRows;
+ delete[] theCols;
 }
 
 template <typename T>
 T TwoDArray<T>::access(int r, int c){
- //TODO access function
- return T();
+ assert(r>=0);
+ assert(c>=0);
+ Node<T>* n;
+ if(numCols<numRows){
+  n = theCols[c]
+  while(n->getRow()!=r) {
+   n = n->getNextV();
+  } 
+ }
+ else {
+  n = theRows[r]
+  while(n->getCol()!=c) {
+   n = n->getNextC();
+  }
+ }
+ return n->getValue();
 }
 
 template <typename T>
 void TwoDArray<T>::insert(int r, int c, T value) {
- //TODO insert function
+ assert(r>=0);
+ assert(c>=0);
+ Node<T>* newNode = new Node<T>*(r, c, value);
+ Node<T>** curr;
+
+ curr = &theCols[c];
+ while(*curr != 0 && (*curr)->getRow() < r){
+  curr = &((*curr)->getNextV());
+ }
+ newNode->setNextV(**curr);
+ *curr = newNode;
+
+ curr = &theRows[r];
+ while(*curr != 0 && (*curr)->getCol() < c){
+  curr = &((*curr)->getNextH());
+ }
+ newNode->setNextH(**curr);
+ *curr = newNode;
 }
 
 template <typename T>
 void TwoDArray<T>::remove(int r, int c){
- //TODO remove function
+ assert(r>=0);
+ assert(r>=0);
+ Node<T>** curr;
+
+ curr = &theCols[c];
+ while(*curr != 0 && (*curr)->getRow() < r){
+  curr = &((*curr)->getNextV());
+ }
+ *curr->setNextV(**curr);
+
+ curr = &theRows[r];
+ while(*curr != 0 && (*curr)->getCol() < c){
+  curr = &((*curr)->getNextH());
+ }
+ *curr->setNextH(**curr);
+ delete *curr;
 }
 
 template <typename T>
@@ -70,9 +122,16 @@ int TwoDArray<T>::getNumCols(){
  return numCols;
 }
 
+Node<T>* TwoDArray<T>::recurDelete(Node<T>* n) { //specialized function to delete ROWS of sparse array
+ if(n->getNextH()==0) {
+  return n;
+ }
+ else {
+  delete recurDelete(n->getNextH());
+ }
+}
+
 template class TwoDArray<int>;
 template class TwoDArray<std::string>;
 template class TwoDArray<double>;
 template class TwoDArray<bool>;
-
-

@@ -6,11 +6,12 @@
 template <typename T>
 class TwoDArray {
  private:
-  Node* theRows;
-  Node* theCols;
+  Node<T>* theRows;
+  Node<T>* theCols;
   T defaultValue;
   int numRows;
   int numCols;
+  Node<T>* recurDelete(Node<T>* n);
  public:
   TwoDArray<T>(int r, int c, T def);
   ~TwoDArray<T>();

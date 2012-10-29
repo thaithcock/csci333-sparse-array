@@ -5,16 +5,20 @@ template <typename T>
 class Node {
  private:
   T value;
-  Node* vPoint;
-  Node* hPoint;
+  Node<T>* vPoint;
+  Node<T>* hPoint;
+  int row;
+  int col;
  public:
-  Node<T>(T v);
+  Node<T>(int r, int c, T v);
   ~Node<T>();
   T getValue();
-  void setNextV(Node* n);
-  void setNextH(Node* n);
-  Node* getNextV();
-  Node* getNextH();
+  void setNextV(Node<T>& n);
+  void setNextH(Node<T>& n);
+  Node<T>*& getNextV();
+  Node<T>*& getNextH();
+  int getRow();
+  int getCol();
 };
 
 #endif

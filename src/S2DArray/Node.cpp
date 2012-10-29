@@ -1,13 +1,15 @@
 #include "Node.h"
 
 template<typename T>
-Node<T>::Node(T v) {
+Node<T>::Node(int r, int c, T v) {
  value = v;
+ row = r;
+ col = c;
 }
 
 template<typename T>
 Node<T>::~Node() {
- //TODO destructor
+ //Everything is on stack?
 }
 
 template<typename T>
@@ -16,21 +18,29 @@ T Node<T>::getValue() {
 }
 
 template<typename T>
-void Node<T>::setNextV(Node* n) {
+void Node<T>::setNextV(Node<T>& n) {
  vPoint = n;
 }
 
 template<typename T>
-void Node<T>::setNextH(Node* n) {
+void Node<T>::setNextH(Node<T>& n) {
  hPoint = n;
 }
 
-Node* Node<T>::getNextV() {
+Node<T>*& Node<T>::getNextV() {
  return vPoint;
 }
 
-Node* Node<T>::getNextH() {
+Node<T>*& Node<T>::getNextH() {
  return hPoint;
+}
+
+int Node<T>::getRow() {
+ return row;
+}
+
+int Node<T>::getCol() {
+ return col;
 }
 
 template class Node<int>;
