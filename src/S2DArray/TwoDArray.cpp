@@ -14,8 +14,6 @@ TwoDArray<T>::TwoDArray(int r = 10, int c = 10, T def = T()){
 
 template <typename T>
 TwoDArray<T>::~TwoDArray<T>(){
- Node<T>* curr;
- Node<T>* next;
  for(int i = 0; i<r; i++){
   recurDelete(theRows[i]);
  }
@@ -29,7 +27,7 @@ T TwoDArray<T>::access(int r, int c){
  assert(c>=0);
  Node<T>* n;
  if(numCols<numRows){
-  n = theCols[c]
+  n = *theCols[c];
   while(n->getRow()!=r) {
    n = n->getNextV();
   } 
@@ -47,7 +45,7 @@ template <typename T>
 void TwoDArray<T>::insert(int r, int c, T value) {
  assert(r>=0);
  assert(c>=0);
- Node<T>* newNode = new Node<T>*(r, c, value);
+ Node<T>* newNode = new Node<T>(r, c, value);
  Node<T>** curr;
 
  curr = &theCols[c];
@@ -77,7 +75,7 @@ void TwoDArray<T>::remove(int r, int c){
  }
  *curr->setNextV(**curr);
 
- curr = &theRows[r];
+ curr = &(theRows[r]);
  while(*curr != 0 && (*curr)->getCol() < c){
   curr = &((*curr)->getNextH());
  }

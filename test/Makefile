@@ -11,15 +11,15 @@ CPP = g++
 CPPFLAGS = -Wall -Wextra
 
 TwoDArray_test:
-	make A2DArray_test
-	make V2DArray_test
+	make $(BUILD)/A2DArray_test
+	make $(BUILD)/V2DArray_test
 
-A2DArray_test: TwoDArray_test.cpp $(SRC)/A2DArray/TwoDArray.o $(GTEST_MAINA)
+$(BUILD)/A2DArray_test: TwoDArray_test.cpp $(SRC)/A2DArray/TwoDArray.o $(GTEST_MAINA)
 	cp $(SRC)/A2DArray/TwoDArray.h .
 	$(CPP) $(CFLAGS) $(GTEST_INCLUDES) -pthread -o $@ $^ $(GTEST_MAINA)
 	rm ./TwoDArray.h
 
-V2DArray_test: TwoDArray_test.cpp
+$(BUILD)/V2DArray_test: TwoDArray_test.cpp
 	cp $(SRC)/V2DArray/TwoDArray.h .
 	$(CPP) $(CFLAGS) $(GTEST_INCLUDES) -pthread -o $@ $^ $(GTEST_MAINA)
 	rm ./TwoDArray.h
@@ -28,7 +28,7 @@ $(GTEST_MAINA): $(GTEST)/src/*.cc $(GTEST)/src/*.h
 	cd $(GTEST)/make; make
 
 clean:
-	rm -f A2DArray_test
+	rm -f *.h
 	rm -f $(GTEST_MAINA)
 	cd $(GTEST)/make; $(MAKE) clean
 

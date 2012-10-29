@@ -9,11 +9,11 @@ TEST(TwoDArray, inits){
 
  TwoDArray<std::string>* stringArray = new TwoDArray<std::string>(5,5,"Q");
  EXPECT_TRUE(stringArray != 0);
- delete stringArray
+ delete stringArray;
 
  TwoDArray<double>* dArray = new TwoDArray<double>(5,5,0.0);
  EXPECT_TRUE(dArray != 0);
- delete dArray
+ delete dArray;
 }
 
 TEST(TwoDArray, insert){
@@ -22,7 +22,7 @@ TEST(TwoDArray, insert){
  EXPECT_TRUE(array->access(0,0).compare("one"));
  array->insert(3,5,"two");
  EXPECT_TRUE(array->access(3,5).compare("two"));
- delete array
+ delete array;
 }
 
 TEST(TwoDArray, remove){
@@ -41,11 +41,11 @@ TEST(TwoDArray, remove){
 TEST(TwoDArray, getNumCols){
  TwoDArray<std::string>* array = new TwoDArray<std::string>(5,7,"def");
  EXPECT_EQ(array->getNumCols(), 7);
- delete array
+ delete array;
 }
 
 TEST(TwoDArray, getNumRows){
  TwoDArray<std::string>* array = new TwoDArray<std::string>(3,5,"def");
  EXPECT_EQ(array->getNumRows(), 3);
- delete array
+ delete array;
 }
